@@ -98,6 +98,10 @@ def github_callback(request):
                     name = profile_json.get("name")
                     email = profile_json.get("email")
                     bio = profile_json.get("bio")
+                    name = username if name is None else name
+                    email = name if email is None else email
+                    bio = "" if bio is None else bio
+
                     try:
                         user = models.User.objects.get(email=email)
                         if user.login_method != models.User.LOGIN_GITHUB:
