@@ -13,7 +13,7 @@ class Command(BaseCommand):
     help = f"This command creates {NAME}"
     
     def add_arguments(self, parser):
-        parser.add_argument("--number", type=int, default=2, help="How many {NAME} do you want to create")
+        parser.add_argument("--number", type=int, default=2, help=f"How many {NAME} do you want to create")
         
         
     def handle(self, *args, **options):
