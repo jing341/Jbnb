@@ -4,12 +4,16 @@ from django.contrib.admin.utils import flatten
 from django_seed import Seed
 from rooms import models as room_models
 from users import models as user_models
+
+
 class Command(BaseCommand):
     help = "This command creates amenities"
+
     def add_arguments(self, parser):
         parser.add_argument(
             "--number", default=2, type=int, help="How many rooms you want to create"
         )
+
     def handle(self, *args, **options):
         number = options.get("number")
         seeder = Seed.seeder()
@@ -36,11 +40,11 @@ class Command(BaseCommand):
         rules = room_models.HouseRule.objects.all()
         for pk in created_clean:
             room = room_models.Room.objects.get(pk=pk)
-            for i in range(3, random.randint(5, 20)):
+            for i in range(3, random.randint(5, 10)):
                 room_models.Photo.objects.create(
                     caption=seeder.faker.sentence(),
                     room=room,
-                    file=f"room_photos/{random.randint(1, 17)}.jpg",
+                    file=f"room_photos/{random.randint(1, 17)}.png",
                 )
             for a in amenities:
                 magic_number = random.randint(0, 15)

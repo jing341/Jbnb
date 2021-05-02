@@ -1,6 +1,14 @@
 @tailwind base;
 @tailwind components;
 
+html {
+    scroll-behavior: smooth;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
 .search-box {
     transition: box-shadow 0.2s linear;
 }
