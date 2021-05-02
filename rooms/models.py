@@ -3,10 +3,11 @@ from django.urls import reverse
 from django_countries.fields import CountryField
 from core import models as core_models
 
+
 class AbstractItem(core_models.TimeStampedModel):
 
     """ Abstract Item """
-    
+
     name = models.CharField(max_length=80)
 
     class Meta:
@@ -15,6 +16,7 @@ class AbstractItem(core_models.TimeStampedModel):
     def __str__(self):
         return self.name
 
+
 class RoomType(AbstractItem):
 
     """ RoomType Model Definition """
@@ -22,12 +24,14 @@ class RoomType(AbstractItem):
     class Meta:
         verbose_name = "Room Type"
 
+
 class Amenity(AbstractItem):
 
     """ Amenity Model Definition """
 
     class Meta:
         verbose_name_plural = "Amenities"
+
 
 class Facility(AbstractItem):
 
@@ -37,13 +41,15 @@ class Facility(AbstractItem):
 
     class Meta:
         verbose_name_plural = "Facilities"
-        
+
+
 class HouseRule(AbstractItem):
 
     """ HouseRule Model Definition """
 
     class Meta:
         verbose_name = "House Rule"
+
 
 class Photo(core_models.TimeStampedModel):
 
@@ -55,6 +61,7 @@ class Photo(core_models.TimeStampedModel):
 
     def __str__(self):
         return self.caption
+
 
 class Room(core_models.TimeStampedModel):
 
@@ -99,6 +106,10 @@ class Room(core_models.TimeStampedModel):
         if len(all_reviews) > 0:
             for review in all_reviews:
                 all_ratings += review.rating_average()
-    
+
             return round(all_ratings / len(all_reviews))
         return 0
+
+    def first_photo(self):
+        (photo,) = self.photos.all()[:1]
+        return photo.file.url
