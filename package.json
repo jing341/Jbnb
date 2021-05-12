@@ -10,15 +10,16 @@
     "css": "gulp"
   },
   "homepage": "https://github.com/jing341/Jbnb#readme",
-  "dependencies": {
+  "devDependencies": {
+    "autoprefixer": "^10.2.5",
     "gulp": "^4.0.2",
     "gulp-csso": "^4.0.1",
     "gulp-postcss": "^9.0.0",
     "gulp-sass": "^4.1.0",
-    "node-sass": "^5.0.0",
+    "node-sass": "^6.0.0",
     "tailwindcss": "^2.1.2"
   },
-  "devDependencies": {
-    "autoprefixer": "^10.2.5"
+  "dependencies": {
+    "sass": "^1.32.12"
   }
 }

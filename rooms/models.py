@@ -112,3 +112,9 @@ class Room(core_models.TimeStampedModel):
     def first_photo(self):
         (photo,) = self.photos.all()[:1]
         return photo.file.url
+
+    def formatted(self):
+        location = f"{self.city} · {self.country.name}"
+        location = location if len(location) < 30 else f"{location[:30]}..."
+        name = self.name if len(self.name) < 45 else f"{self.name[:45]}..."
+        return {"location": location, "name": name}
