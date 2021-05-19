@@ -28,4 +28,10 @@ input {
   @apply rounded-sm p-5 font-light text-left border w-full border-gray-600 outline-none focus:border-teal-500;
 }
 
+form {
+  input {
+    @apply mb-3;
+  }
+}
+
 @tailwind utilities;
