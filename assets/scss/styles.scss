@@ -14,10 +14,18 @@ body::-webkit-scrollbar {
 }
 
 .nav_link {
-    @apply ml-8 border-b-2 border-white h-full flex items-center;
+    @apply ml-8 border-b-2 border-white hover:border-gray-600 h-full flex items-center;
     a {
       @apply py-10 px-5;
     }
+}
+
+.btn {
+  @apply w-full text-lg text-center rounded-sm py-5 font-light;
+}
+
+input {
+  @apply rounded-sm p-5 font-light text-left border w-full border-gray-600 outline-none focus:border-teal-500;
 }
 
 @tailwind utilities;
