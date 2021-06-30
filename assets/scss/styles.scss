@@ -1,30 +1,20 @@
 @tailwind base;
 @tailwind components;
-
-html {
-  scroll-behavior: smooth;
-}
-
-body::-webkit-scrollbar {
-  display: none;
-}
-
 .search-box {
   transition: box-shadow 0.2s linear;
 }
-
 .nav_link {
-  @apply ml-8 border-b-2 border-white hover:border-gray-600 h-full flex items-center;
+  @apply ml-6 border-b-2 border-white h-full flex items-center;
   a {
     @apply py-10 px-5;
   }
+  &:hover {
+    @apply border-gray-600;
+  }
 }
-
 .btn {
   @apply text-center rounded-sm py-5 font-light text-lg w-full;
-
 }
-
 .btn-link {
   @apply text-center py-3 rounded-lg font-light text-lg w-full text-white bg-red-500;
 }
@@ -32,16 +22,19 @@ body::-webkit-scrollbar {
 input,
 textarea,
 select {
-  @apply rounded-sm p-5 font-light text-left border w-full border-gray-600 outline-none focus:border-teal-500 focus:outline-none focus:border-teal-500;
+  @apply rounded-sm py-5 font-light text-lg w-full text-left border border-gray-600 px-5;
+  &:focus {
+    @apply outline-none border-teal-500;
+  }
 }
 
 textarea {
   resize: none;
-  height:100px;
+  height: 100px;
 }
 
 select {
-  height: 50px;
+  height: 70px;
 }
 
 form {
@@ -49,18 +42,20 @@ form {
     @apply mb-3 w-full;
     &.has_error {
       input {
-        @apply bg-red-200 border-gray-600 focus:border-gray-600;
+        @apply bg-red-200 border-gray-600;
+        &:focus {
+          @apply border-gray-600;
+        }
       }
     }
   }
 }
-
 @keyframes messageFadeIn {
   0% {
     opacity: 0;
     transform: translateY(-50px);
   }
-  50% {
+  5% {
     opacity: 1;
     transform: translateY(50px);
   }
@@ -73,7 +68,6 @@ form {
     transform: translateY(-50px);
   }
 }
-
 .message {
   animation: messageFadeIn 5s ease-in-out forwards;
   &.error {
@@ -89,5 +83,4 @@ form {
     @apply bg-yellow-400;
   }
 }
-
 @tailwind utilities;
