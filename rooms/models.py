@@ -6,7 +6,7 @@ from core import models as core_models
 
 class AbstractItem(core_models.TimeStampedModel):
 
-    """ Abstract Item """
+    """Abstract Item"""
 
     name = models.CharField(max_length=80)
 
@@ -19,7 +19,7 @@ class AbstractItem(core_models.TimeStampedModel):
 
 class RoomType(AbstractItem):
 
-    """ RoomType Model Definition """
+    """RoomType Model Definition"""
 
     class Meta:
         verbose_name = "Room Type"
@@ -27,7 +27,7 @@ class RoomType(AbstractItem):
 
 class Amenity(AbstractItem):
 
-    """ Amenity Model Definition """
+    """Amenity Model Definition"""
 
     class Meta:
         verbose_name_plural = "Amenities"
@@ -35,7 +35,7 @@ class Amenity(AbstractItem):
 
 class Facility(AbstractItem):
 
-    """ Facility Model Definition """
+    """Facility Model Definition"""
 
     pass
 
@@ -45,7 +45,7 @@ class Facility(AbstractItem):
 
 class HouseRule(AbstractItem):
 
-    """ HouseRule Model Definition """
+    """HouseRule Model Definition"""
 
     class Meta:
         verbose_name = "House Rule"
@@ -53,7 +53,7 @@ class HouseRule(AbstractItem):
 
 class Photo(core_models.TimeStampedModel):
 
-    """ Photo Model Definition """
+    """Photo Model Definition"""
 
     caption = models.CharField(max_length=80)
     file = models.ImageField(upload_to="room_photos")
@@ -65,7 +65,7 @@ class Photo(core_models.TimeStampedModel):
 
 class Room(core_models.TimeStampedModel):
 
-    """ Room Model Definition """
+    """Room Model Definition"""
 
     name = models.CharField(max_length=140)
     description = models.TextField()
@@ -118,3 +118,8 @@ class Room(core_models.TimeStampedModel):
         location = location if len(location) < 30 else f"{location[:30]}..."
         name = self.name if len(self.name) < 45 else f"{self.name[:45]}..."
         return {"location": location, "name": name}
+
+    def get_next_four_photos(self):
+        photos = self.photos.all()[1:5]
+        print(photos)
+        return photos
