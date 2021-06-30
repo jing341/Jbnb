@@ -29,8 +29,19 @@ body::-webkit-scrollbar {
   @apply text-center py-3 rounded-lg font-light text-lg w-full text-white bg-red-500;
 }
 
-input {
-  @apply rounded-sm p-5 font-light text-left border w-full border-gray-600 outline-none focus:border-teal-500;
+input,
+textarea,
+select {
+  @apply rounded-sm p-5 font-light text-left border w-full border-gray-600 outline-none focus:border-teal-500 focus:outline-none focus:border-teal-500;
+}
+
+textarea {
+  resize: none;
+  height:100px;
+}
+
+select {
+  height: 50px;
 }
 
 form {
