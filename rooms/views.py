@@ -1,11 +1,14 @@
-from django.views.generic import ListView, DetailView, View
+from django.db.models import query
+from django.http import Http404
+from django.views.generic import ListView, DetailView, View, UpdateView
 from django.shortcuts import render
 from django.core.paginator import Paginator
+from users import mixins as user_mixins
 from . import models, forms
 
 
 class HomeView(ListView):
-    """ HomeView Definition """
+    """HomeView Definition"""
 
     model = models.Room
     paginate_by = 12
@@ -15,13 +18,13 @@ class HomeView(ListView):
 
 
 class RoomDetail(DetailView):
-    """ RoomDetail Definition """
+    """RoomDetail Definition"""
 
     model = models.Room
 
 
 class SearchView(View):
-    """ SearchView Definition """
+    """SearchView Definition"""
 
     def get(self, request):
         country = request.GET.get("country")
@@ -74,3 +77,34 @@ class SearchView(View):
         else:
             form = forms.SearchForm()
         return render(request, "rooms/search.html", {"form": form})
+
+
+class EditRoomView(user_mixins.LoggedInOnlyView, UpdateView):
+
+    model = models.Room
+    template_name = "rooms/room_edit.html"
+    fields = (
+        "name",
+        "description",
+        "country",
+        "city",
+        "price",
+        "address",
+        "guests",
+        "beds",
+        "bedrooms",
+        "baths",
+        "check_in",
+        "check_out",
+        "instant_book",
+        "room_type",
+        "amenities",
+        "facilities",
+        "house_rules",
+    )
+
+    def get_object(self):
+        room = super().get_object()
+        if room.host.pk != self.request.user.pk:
+            raise Http404()
+        return room
