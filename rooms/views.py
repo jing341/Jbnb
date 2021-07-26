@@ -174,5 +174,5 @@ class CreateRoomView(user_mixins.LoggedInOnlyView, FormView):
         room.host = self.request.user
         room.save()
         form.save_m2m()
-        messages.success(self.request, "Room Created")
+        messages.success(self.request, "Room Uploaded")
         return redirect(reverse("rooms:detail", kwargs={"pk": room.pk}))
