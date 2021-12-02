@@ -10,7 +10,6 @@ from django.template.loader import render_to_string
 
 class User(AbstractUser):
     """ Custom User Model """
-
     GENDER_MALE = "male"
     GENDER_FEMALE = "female"
     GENDER_OTHER = "other"
@@ -21,24 +20,18 @@ class User(AbstractUser):
     )
     LANGUAGE_ENGLISH = "en"
     LANGUAGE_KOREAN = "kr"
-
     LANGUAGE_CHOICES = ((LANGUAGE_ENGLISH, "English"), (LANGUAGE_KOREAN, "Korean"))
-
     CURRENCY_USD = "usd"
     CURRENCY_KRW = "krw"
-
     CURRENCY_CHOICES = ((CURRENCY_USD, "USD"), (CURRENCY_KRW, "KRW"))
-
     LOGIN_EMAIL = "email"
     LOGIN_GITHUB = "github"
-    LOGIN_KAKAO = "kakao"
-
+    LOGING_KAKAO = "kakao"
     LOGIN_CHOICES = (
         (LOGIN_EMAIL, "Email"),
         (LOGIN_GITHUB, "Github"),
-        (LOGIN_KAKAO, "Kakao"),
+        (LOGING_KAKAO, "Kakao"),
     )
-
     avatar = models.ImageField(upload_to="avatars", blank=True)
     gender = models.CharField(choices=GENDER_CHOICES, max_length=10, blank=True)
     bio = models.TextField(blank=True)
@@ -57,8 +50,7 @@ class User(AbstractUser):
     )
 
     def get_absolute_url(self):
-        
-        return reverse('users:profile', kwargs={'pk': self.pk}) 
+        return reverse("users:profile", kwargs={"pk": self.pk})
 
     def verify_email(self):
         if self.email_verified is False:
@@ -68,7 +60,7 @@ class User(AbstractUser):
                 "emails/verify_email.html", {"secret": secret}
             )
             send_mail(
-                "Verify Jbnb Account",
+                "Verify Airbnb Account",
                 strip_tags(html_message),
                 settings.EMAIL_FROM,
                 [self.email],
