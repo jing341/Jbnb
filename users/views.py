@@ -106,6 +106,11 @@ def github_callback(request):
                             login_method=models.User.LOGIN_GITHUB,
                             email_verified=True,
                         )
+                    if name is None:
+                        name = username
+
+                    if bio is None:
+                        bio = ""
                         user.set_unusable_password()
                         user.save()
                     login(request, user)
